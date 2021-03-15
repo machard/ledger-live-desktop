@@ -138,7 +138,6 @@ const Dapps = ({ history, location, match }: Props) => {
           flex: 1,
           marginTop: 10,
         }}
-        nodeintegration="true"
       />
     </Box>
   );
