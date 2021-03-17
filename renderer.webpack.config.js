@@ -68,6 +68,12 @@ module.exports = {
         options: babelConfig,
       },
       {
+        test: /node_modules[\/\\](iconv-lite)[\/\\].+/,
+        resolve: {
+          aliasFields: ['main']
+        }
+      },
+      {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },

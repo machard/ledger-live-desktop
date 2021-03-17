@@ -26,8 +26,7 @@ import { enableGlobalTab, disableGlobalTab, isGlobalTabEnabled } from "~/config/
 import sentry from "~/sentry/browser";
 import { setEnvOnAllThreads } from "~/helpers/env";
 import { command } from "~/renderer/commands";
-import dbMiddleware from "~/renderer/middlewares/db";
-import createStore from "~/renderer/createStore";
+import store from "./store";
 import events from "~/renderer/events";
 import { setAccounts } from "~/renderer/actions/accounts";
 import { fetchSettings, setDeepLinkUrl } from "~/renderer/actions/settings";
@@ -83,8 +82,6 @@ async function init() {
   if (window.localStorage.getItem("hard-reset")) {
     await hardReset();
   }
-
-  const store = createStore({ dbMiddleware });
 
   ipcRenderer.once("deep-linking", (event, url) => {
     store.dispatch(setDeepLinkUrl(url));

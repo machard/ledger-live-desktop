@@ -1,0 +1,24 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Ledger Live API",
+    "description": "This is the Ledger Live API",
+    "version": "0.0.1"
+  },
+  "paths": {
+    "/v0.0.1/accounts": {
+      "get": {
+        "tags": [
+          "accounts"
+        ],
+        "summary": "Return Ledger Live accounts",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  }
+}
+  
