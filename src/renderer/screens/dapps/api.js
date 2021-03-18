@@ -20,7 +20,7 @@ app.get("/v0.0.1/account", (req, res) => {
       onApiEnd: (err, account) => {
         store.dispatch(closeModal("MODAL_SELECT_ACCOUNT"));
         if (err) {
-          res.json({ status: 400, body: { err } });
+          return res.json({ status: 400, body: { err } });
         }
         res.json({ status: 200, body: account });
       },
