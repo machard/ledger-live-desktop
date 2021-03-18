@@ -32,7 +32,12 @@ class SendModal extends PureComponent<{}, { stepId: StepId }> {
         render={({ onClose, data }) => (
           <Body
             stepId={stepId}
-            onClose={onClose}
+            onClose={() => {
+              if (data.onApiEnd) {
+                return data.onApiEnd("cancelled");
+              }
+              onClose();
+            }}
             onChangeStepId={this.handleStepChange}
             params={data || {}}
           />

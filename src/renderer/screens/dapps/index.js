@@ -30,9 +30,7 @@ const Dapps = ({ history, location, match }: Props) => {
         url: message.data.url,
         headers: message.data.params.headers,
       });
-      if (message.data.body) {
-        req.write(JSON.parse(message.data.body));
-      }
+      req.body = message.data.params.body ? JSON.parse(message.data.params.body) : null;
       req.end();
       const res = {
         setHeader: () => {},

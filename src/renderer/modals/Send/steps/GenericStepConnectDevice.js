@@ -49,6 +49,7 @@ export default function StepConnectDevice({
   onOperationBroadcasted,
   onTransactionError,
   setSigned,
+  onApiEnd,
 }: {
   transitionTo: string => void,
   account: ?AccountLike,
@@ -78,6 +79,9 @@ export default function StepConnectDevice({
       onResult={({ signedOperation, transactionSignError }) => {
         if (signedOperation) {
           setSigned(true);
+          if (onApiEnd) {
+            return onApiEnd(null, signedOperation);
+          }
           broadcast(signedOperation).then(
             operation => {
               onOperationBroadcasted(operation);

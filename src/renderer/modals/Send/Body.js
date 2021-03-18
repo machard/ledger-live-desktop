@@ -247,6 +247,7 @@ const Body = ({
     maybeRecipient,
     onResetMaybeRecipient,
     updateTransaction,
+    params,
   };
 
   if (!status) return null;

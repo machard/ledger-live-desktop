@@ -31,6 +31,54 @@
           }
         }
       }
+    },
+    "/v0.0.1/transaction": {
+      "post": {
+        "tags": [
+          "accounts"
+        ],
+        "summary": "Send securely a transaction",
+        "requestBody": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Transaction"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "allgood"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "example": "libcore:..:0xaaaa...."
+          },
+          "recipient": {
+            "type": "string",
+            "example": "0xaaaa...."
+          },
+          "amount": {
+            "type": "string",
+            "example": "1"
+          }
+        },
+        "xml": {
+          "name": "Transaction"
+        }
+      }
     }
   }
 }

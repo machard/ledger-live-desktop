@@ -13,11 +13,14 @@ export default function StepConnectDevice({
   onOperationBroadcasted,
   onTransactionError,
   setSigned,
+  params,
 }: StepProps) {
+  console.log(params.onApiEnd);
   return (
     <>
       <TrackPage category="Send Flow" name="Step ConnectDevice" />
       <GenericStepConnectDevice
+        onApiEnd={params.onApiEnd}
         account={account}
         parentAccount={parentAccount}
         transaction={transaction}
