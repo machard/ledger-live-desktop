@@ -21,7 +21,7 @@ const Apps = (props) => {
         >
           Back
         </Button>
-        {app === "inprogress" ? <Box>In Progress</Box> : <App url={app} />}
+        <App url={app} />
       </Box>
     );
   }
@@ -30,7 +30,7 @@ const Apps = (props) => {
     <Box grow>
       <Button
         onClick={() => {
-          setApp("https://machard.github.io/ll-client-demo/");
+          setApp("https://machard.github.io/ll-client-demo/api-sandbox/");
         }}
         primary
         style={{ marginBottom: 10 }}
@@ -39,7 +39,7 @@ const Apps = (props) => {
       </Button>
       <Button
         onClick={() => {
-          setApp("inprogress");
+          setApp("https://machard.github.io/ll-client-demo/ethereum-dapp-browser/");
         }}
         primary
       >
