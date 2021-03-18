@@ -1,6 +1,6 @@
 // @flow
 import "./setup";
-import { BrowserWindow, screen, shell } from "electron";
+import { BrowserWindow, screen, shell, app } from "electron";
 import path from "path";
 import { delay } from "@ledgerhq/live-common/lib/promise";
 import { URL } from "url";
@@ -95,10 +95,23 @@ export async function createMainWindow({ dimensions, positions }: any, settings:
       preload: path.join(__dirname, "preloader.bundle.js"),
       enableRemoteModule: true,
       ...defaultWindowOptions.webPreferences,
+      webSecurity: false,
     },
   };
 
+  app.commandLine.appendSwitch("disable-site-isolation-trials");
+
   mainWindow = new BrowserWindow(windowOptions);
+
+  mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
+    callback({
+      responseHeaders: Object.fromEntries(
+        Object.entries(details.responseHeaders).filter(
+          header => !/x-frame-options/i.test(header[0]),
+        ),
+      ),
+    });
+  });
 
   mainWindow.name = "MainWindow";
 
@@ -110,7 +123,7 @@ export async function createMainWindow({ dimensions, positions }: any, settings:
         mainWindow.webContents.once("devtools-open", () => {
           mainWindow && mainWindow.focus();
         });
-        mainWindow.webContents.openDevTools();
+        // mainWindow.webContents.openDevTools();
       }
     });
   }

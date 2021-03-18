@@ -42,8 +42,19 @@ const Apps = (props) => {
           setApp("https://machard.github.io/ll-client-demo/ethereum-dapp-browser/");
         }}
         primary
+        style={{ marginBottom: 10 }}
       >
         Ledger Live Ethereum Dapp browser
+      </Button>
+      <Button
+        onClick={() => {
+          setApp(
+            "https://machard.github.io/ll-client-demo/ethereum-dapp-browser/?app=https://app.aave.com",
+          );
+        }}
+        primary
+      >
+        Aave
       </Button>
     </Box>
   );
@@ -58,7 +69,7 @@ const App = ({ url }) => {
       return;
     }
     const handler = message => {
-      console.log("handlerrr", message);
+      console.log("handlerrr", message.data);
       if (message.data.from !== "LedgerLiveClient") {
         return;
       }
