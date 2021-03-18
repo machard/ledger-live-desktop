@@ -5,6 +5,7 @@ import MockReq from "mock-req";
 import MockRes from "mock-res";
 import Box from "~/renderer/components/Box";
 import api from "./api";
+import Button from "~/renderer/components/Button";
 
 type Props = {
   history: RouterHistory,
@@ -12,8 +13,68 @@ type Props = {
   match: Match,
 };
 
+const Apps = (props) => {
+  const [app, setApp] = useState();
+
+  if (app === "sandbox") {
+    return (
+      <Box grow>
+        <Button
+          onClick={() => {
+            setApp();
+          }}
+          primary
+          style={{ marginBottom: 10 }}
+        >
+          Back
+        </Button>
+        <Doc {...props} />
+      </Box>
+    );
+  }
+
+  if (app === "ethereumDapp") {
+    return (
+      <Box grow>
+        <Button
+          onClick={() => {
+            setApp();
+          }}
+          primary
+          style={{ marginBottom: 10 }}
+        >
+          Back
+        </Button>
+        <Dapp {...props} />
+      </Box>
+    );
+  }
+
+  return (
+    <Box grow>
+      <Button
+        onClick={() => {
+          setApp("sandbox");
+        }}
+        primary
+        style={{ marginBottom: 10 }}
+      >
+        Ledger Live API Sandbox
+      </Button>
+      <Button
+        onClick={() => {
+          setApp("ethereumDapp");
+        }}
+        primary
+      >
+        Ledger Live Ethereum Dapp browser
+      </Button>
+    </Box>
+  );
+};
+
 // Props are passed from the <Route /> component in <Default />
-const Dapps = ({ history, location, match }: Props) => {
+const Doc = ({ history, location, match }: Props) => {
   const [iFrame, setIFrame] = useState();
 
   useEffect(() => {
@@ -70,4 +131,9 @@ const Dapps = ({ history, location, match }: Props) => {
     </Box>
   );
 };
-export default Dapps;
+
+// Props are passed from the <Route /> component in <Default />
+const Dapp = ({ history, location, match }: Props) => {
+  return <Box grow>In progress</Box>;
+};
+export default Apps;
