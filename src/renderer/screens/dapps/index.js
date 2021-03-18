@@ -1,22 +1,15 @@
 // @flow
 import React, { useCallback, useState, useEffect } from "react";
-import type { RouterHistory, Match, Location } from "react-router-dom";
 import MockReq from "mock-req";
 import MockRes from "mock-res";
 import Box from "~/renderer/components/Box";
 import api from "./api";
 import Button from "~/renderer/components/Button";
 
-type Props = {
-  history: RouterHistory,
-  location: Location,
-  match: Match,
-};
-
 const Apps = (props) => {
   const [app, setApp] = useState();
 
-  if (app === "sandbox") {
+  if (app) {
     return (
       <Box grow>
         <Button
@@ -28,24 +21,7 @@ const Apps = (props) => {
         >
           Back
         </Button>
-        <Doc {...props} />
-      </Box>
-    );
-  }
-
-  if (app === "ethereumDapp") {
-    return (
-      <Box grow>
-        <Button
-          onClick={() => {
-            setApp();
-          }}
-          primary
-          style={{ marginBottom: 10 }}
-        >
-          Back
-        </Button>
-        <Dapp {...props} />
+        {app === "inprogress" ? <Box>In Progress</Box> : <App url={app} />}
       </Box>
     );
   }
@@ -54,7 +30,7 @@ const Apps = (props) => {
     <Box grow>
       <Button
         onClick={() => {
-          setApp("sandbox");
+          setApp("https://machard.github.io/ll-client-demo/");
         }}
         primary
         style={{ marginBottom: 10 }}
@@ -63,7 +39,7 @@ const Apps = (props) => {
       </Button>
       <Button
         onClick={() => {
-          setApp("ethereumDapp");
+          setApp("inprogress");
         }}
         primary
       >
@@ -74,7 +50,7 @@ const Apps = (props) => {
 };
 
 // Props are passed from the <Route /> component in <Default />
-const Doc = ({ history, location, match }: Props) => {
+const App = ({ url }) => {
   const [iFrame, setIFrame] = useState();
 
   useEffect(() => {
@@ -123,7 +99,7 @@ const Doc = ({ history, location, match }: Props) => {
     <Box grow>
       <iframe
         ref={ref}
-        src="https://machard.github.io/ll-client-demo/"
+        src={url}
         style={{
           flex: 1,
         }}
@@ -132,8 +108,4 @@ const Doc = ({ history, location, match }: Props) => {
   );
 };
 
-// Props are passed from the <Route /> component in <Default />
-const Dapp = ({ history, location, match }: Props) => {
-  return <Box grow>In progress</Box>;
-};
 export default Apps;
