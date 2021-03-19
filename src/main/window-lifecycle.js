@@ -95,14 +95,15 @@ export async function createMainWindow({ dimensions, positions }: any, settings:
       preload: path.join(__dirname, "preloader.bundle.js"),
       enableRemoteModule: true,
       ...defaultWindowOptions.webPreferences,
-      webSecurity: false,
+      // webSecurity: false,
     },
   };
 
-  app.commandLine.appendSwitch("disable-site-isolation-trials");
+  // app.commandLine.appendSwitch("disable-site-isolation-trials");
 
   mainWindow = new BrowserWindow(windowOptions);
 
+  /*
   mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
     callback({
       responseHeaders: Object.fromEntries(
@@ -112,6 +113,7 @@ export async function createMainWindow({ dimensions, positions }: any, settings:
       ),
     });
   });
+  */
 
   mainWindow.name = "MainWindow";
 
@@ -123,7 +125,7 @@ export async function createMainWindow({ dimensions, positions }: any, settings:
         mainWindow.webContents.once("devtools-open", () => {
           mainWindow && mainWindow.focus();
         });
-        // mainWindow.webContents.openDevTools();
+        mainWindow.webContents.openDevTools();
       }
     });
   }

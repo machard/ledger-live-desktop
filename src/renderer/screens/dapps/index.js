@@ -35,9 +35,18 @@ const Apps = (props) => {
         primary
         style={{ marginBottom: 10 }}
       >
-        Ledger Live API Sandbox
+        Ledger Live API Sandbox (iframe, nothing injected, ledger-live-client included by the app)
       </Button>
       <Button
+        onClick={() => {
+          setApp("https://machard.github.io/ll-client-demo/ethereum-dapp-demo/");
+        }}
+        primary
+        style={{ marginBottom: 10 }}
+      >
+        Ledger Live Ethereum standalone Dapp Demo (iframe, nothing injected, ledger-live-web3-provider included by the app)
+      </Button>
+      {/*<Button
         onClick={() => {
           setApp("https://machard.github.io/ll-client-demo/ethereum-dapp-browser/");
         }}
@@ -45,17 +54,7 @@ const Apps = (props) => {
         style={{ marginBottom: 10 }}
       >
         Ledger Live Ethereum Dapp browser
-      </Button>
-      <Button
-        onClick={() => {
-          setApp(
-            "https://machard.github.io/ll-client-demo/ethereum-dapp-browser/?app=https://app.aave.com",
-          );
-        }}
-        primary
-      >
-        Aave
-      </Button>
+      </Button>*/}
     </Box>
   );
 };
