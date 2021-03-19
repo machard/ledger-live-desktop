@@ -35,7 +35,13 @@ const Apps = (props) => {
         >
           Back
         </Button>
-        {app === "aavehack" ? <AaveHack /> : <App url={app} />}
+        {app === "aavehack" ? (
+          <AaveHack />
+        ) : app === "inprogress" ? (
+          <Box>In Progress</Box>
+        ) : (
+          <App url={app} />
+        )}
       </Box>
     );
   }
@@ -59,6 +65,15 @@ const Apps = (props) => {
         style={{ marginBottom: 10 }}
       >
         Ledger Live Ethereum standalone Dapp Demo (iframe, nothing injected, ledge-live-client + ledger-live-web3-provider included by the app)
+      </Button>
+      <Button
+        onClick={() => {
+          setApp("inprogress");
+        }}
+        primary
+        style={{ marginBottom: 10 }}
+      >
+        Aave (iframe, ledge-live-client + ledger-live-web3-provider injected)
       </Button>
       <Button
         onClick={() => {
