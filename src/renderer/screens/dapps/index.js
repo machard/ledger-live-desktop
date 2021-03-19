@@ -44,7 +44,7 @@ const Apps = (props) => {
         primary
         style={{ marginBottom: 10 }}
       >
-        Ledger Live Ethereum standalone Dapp Demo (iframe, nothing injected, ledger-live-web3-provider included by the app)
+        Ledger Live Ethereum standalone Dapp Demo (iframe, nothing injected, ledge-live-client + ledger-live-web3-provider included by the app)
       </Button>
       {/*<Button
         onClick={() => {
