@@ -70,7 +70,7 @@ const Apps = (props) => {
         onClick={() => {
           setApp("inprogress");
         }}
-        primary
+        outline
         style={{ marginBottom: 10 }}
       >
         Aave (iframe, ledge-live-client + ledger-live-web3-provider injected)
@@ -79,7 +79,7 @@ const Apps = (props) => {
         onClick={() => {
           setApp("aavehack");
         }}
-        primary
+        danger
         style={{ marginBottom: 10 }}
       >
         Aave (webview, injected wallet-connect-web3-provider hacked to use ipc transport instead of websocket bridge)
