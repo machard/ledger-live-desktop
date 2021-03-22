@@ -11,6 +11,13 @@
   </p>
  </a>
 
+## Platform apps PoC
+
+- Apps need to be developped in `src/ll-clients/apps` 
+- Injections scripts need to be developped in `src/ll-client/injections`
+- in order to server apps you need to run `yarn start:apps`
+- PoCs are in `src/screen/dapps` 
+
 ## Architecture
 
 Ledger Live is an hybrid desktop application built with Electron, React, Redux, RxJS,.. and highly optimized with [ledger-core](https://github.com/LedgerHQ/lib-ledger-core) C++ library to deal with blockchains (sync, broadcast,..) via [ledger-core-node-bindings](https://github.com/LedgerHQ/lib-ledger-core-node-bindings). It communicates to Ledger hardware wallet devices (Nano S / Blue) to verify address and sign transactions with [ledgerjs](https://github.com/LedgerHQ/ledgerjs). Some logic is shared with [live-common](https://github.com/LedgerHQ/ledger-live-common).

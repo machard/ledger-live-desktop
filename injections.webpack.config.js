@@ -1,6 +1,9 @@
 const path = require("path");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const babelPlugins = require("./babel.plugins");
+const fs = require("fs");
+
+const injections = fs.readdirSync("./src/ll-client/injections");
 
 const babelConfig = {
   presets: [
@@ -28,10 +31,18 @@ const babelConfig = {
 
 module.exports = {
   target: "electron-preload",
-  entry: ["./src/provider/index.js"],
+  entry: {
+    ...injections.reduce(
+      (acc, injection) => ({
+        ...acc,
+        [injection]: `./src/ll-client/injections/${injection}/index.js`,
+      }),
+      {},
+    ),
+  },
   output: {
     path: path.resolve(__dirname, ".webpack"),
-    filename: "provider.bundle.js",
+    filename: "[name]/bundle.js",
   },
   optimization: {
     minimize: false,

@@ -34,9 +34,9 @@ const bundles = {
     wpConf: require("../preloader.webpack.config"),
     color: "purple",
   },
-  provider: {
-    name: "provider",
-    wpConf: require("../provider.webpack.config"),
+  injections: {
+    name: "injections",
+    wpConf: require("../injections.webpack.config"),
     color: "green",
   },
 };
@@ -153,9 +153,9 @@ const startDev = async argv => {
     "preloader",
     buildMainConfig("development", bundles.preloader, argv),
   );
-  const providerWorker = new WebpackWorker(
-    "provider",
-    buildMainConfig("development", bundles.provider, argv),
+  const injectionsWorker = new WebpackWorker(
+    "injections",
+    buildMainConfig("development", bundles.injections, argv),
   );
   const rendererWorker = new WebpackWorker(
     "renderer",
@@ -170,7 +170,7 @@ const startDev = async argv => {
     preloaderWorker.watch(() => {
       electron.reload();
     }),
-    providerWorker.watch(() => {
+    injectionsWorker.watch(() => {
       electron.reload();
     }),
     rendererWorker.serve(argv.port),
@@ -181,19 +181,19 @@ const startDev = async argv => {
 const build = async argv => {
   const mainConfig = buildMainConfig("production", bundles.main, argv);
   const preloaderConfig = buildMainConfig("production", bundles.preloader, argv);
-  const providerConfig = buildMainConfig("production", bundles.provider, argv);
+  const injectionsConfig = buildMainConfig("production", bundles.injections, argv);
   const rendererConfig = buildRendererConfig("production", bundles.renderer, argv);
 
   const mainWorker = new WebpackWorker("main", mainConfig);
   const rendererWorker = new WebpackWorker("renderer", rendererConfig);
   const preloaderWorker = new WebpackWorker("preloader", preloaderConfig);
-  const providerWorker = new WebpackWorker("provider", providerConfig);
+  const injectionsWorker = new WebpackWorker("injections", injectionsConfig);
 
   await Promise.all([
     mainWorker.bundle(),
     rendererWorker.bundle(),
     preloaderWorker.bundle(),
-    providerWorker.bundle(),
+    injectionsWorker.bundle(),
   ]);
 };
 

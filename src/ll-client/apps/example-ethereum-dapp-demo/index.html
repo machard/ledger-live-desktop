@@ -1,0 +1,11 @@
+<!doctype html>
+<html style="height:100%">
+<head>
+  <meta charset="UTF-8">
+  <title>Getting Started</title>
+</head>
+<body style="height:100%">
+  Ethereum dapp demo<br /><br />
+  <button onclick="window.ethereum.sendAsync({ method: 'eth_accounts' }, (err, { result }) => {document.querySelector('button').innerHTML = result[0]})">Connect With Ledger Live</button>
+</body>
+</html>

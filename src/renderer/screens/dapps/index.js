@@ -50,7 +50,7 @@ const Apps = (props) => {
     <Box grow>
       <Button
         onClick={() => {
-          setApp("https://machard.github.io/ll-client-demo/api-sandbox/");
+          setApp("http://localhost:8082/example-api-sandbox");
         }}
         primary
         style={{ marginBottom: 10 }}
@@ -59,7 +59,7 @@ const Apps = (props) => {
       </Button>
       <Button
         onClick={() => {
-          setApp("https://machard.github.io/ll-client-demo/ethereum-dapp-demo/");
+          setApp("http://localhost:8082/example-ethereum-dapp-demo");
         }}
         primary
         style={{ marginBottom: 10 }}
@@ -74,6 +74,15 @@ const Apps = (props) => {
         style={{ marginBottom: 10 }}
       >
         Aave (iframe, ledge-live-client + ledger-live-web3-provider injected)
+      </Button>
+      <Button
+        onClick={() => {
+          setApp("inprogress");
+        }}
+        outline
+        style={{ marginBottom: 10 }}
+      >
+        Aave (browserview, ledge-live-client + ledger-live-web3-provider injected)
       </Button>
       <Button
         onClick={() => {
@@ -280,8 +289,8 @@ const AaveHack = () => {
   );
 
   const preload = __DEV__
-    ? path.join(process.env.PWD || "", ".webpack", "provider.bundle.js")
-    : path.join(__dirname, "provider.bundle.js");
+    ? path.join(process.env.PWD || "", ".webpack", "wallet-connect-web3-provider-hack", "bundle.js")
+    : path.join(__dirname, "wallet-connect-web3-provider-hack", "bundle.js");
 
   return (
     <Box grow>
